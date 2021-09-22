@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 
 
 
+
 export default function RecipeReviewCard() {
     return (
         <>
@@ -18,22 +19,22 @@ export default function RecipeReviewCard() {
                 --------------DASHBOARD--------------
             </Typography>;
 
-            <Card sx={{ maxWidth: 345 }}>
+            <Card sx={{ maxWidth: 345 }} >
                 <Link to="/detail">
-                <CardMedia
-                    component="img"
-                    height="194"
-                    src="https://www.mshowto.org/images/articles/2020/05/1_PY24xlr4TpOkXW04HUoqrQ.jpeg"
-                    alt="Postgre SQL"
-                />
-                <CardContent>
-                    {"today"}
-                    <Typography variant="body2" color="text.secondary">
-                        This impressive paella is a perfect party dish and a fun meal to cook
-                        together with your guests. Add 1 cup of frozen peas along with the mussels,
-                        if you like.
-                    </Typography>
-                </CardContent>
+                    <CardMedia
+                        component="img"
+                        height="194"
+                        src="https://www.mshowto.org/images/articles/2020/05/1_PY24xlr4TpOkXW04HUoqrQ.jpeg"
+                        alt="Postgre SQL"
+                    />
+                    <CardContent>
+                        {"today"}
+                        <Typography variant="body2" color="text.secondary">
+                            This impressive paella is a perfect party dish and a fun meal to cook
+                            together with your guests. Add 1 cup of frozen peas along with the mussels,
+                            if you like.
+                        </Typography>
+                    </CardContent>
                 </Link>
                 <CardActions disableSpacing>
                     <IconButton aria-label="add to favorites">

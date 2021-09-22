@@ -5,6 +5,7 @@ import Login from '../components/Login';
 import Register from '../components/Register';
 import Dashboard from '../components/Dashboard';
 import Details from '../components/Details';
+import Profile from '../components/Profil';
 import FormComponent from '../form/Form'
 import {addInfo, editHandler} from '../function/function'
 import { ToastContainer } from 'react-toastify';
@@ -14,7 +15,8 @@ const initialState = {title: "", image: "", content: ""}
 function AppRouter() {
     const [info, setInfo] = useState(initialState)
 
-  const handleFormSubmit = () => {
+  const handleFormSubmit = (e) => {
+      e.preventDefault();
     addInfo(info);
     // if(info?.id){
     //   editHandler(info)
@@ -44,6 +46,9 @@ function AppRouter() {
                 </Route>
                 <Route path="/detail" >
                     <Details />
+                </Route>
+                <Route path="/profile" >
+                    <Profile />
                 </Route>
                 <Route path="/new-blog">
                     <FormComponent

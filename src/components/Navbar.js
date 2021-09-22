@@ -11,6 +11,8 @@ import { Avatar } from '@mui/material';
 import { Link, useHistory } from 'react-router-dom'
 import { AuthContext } from "../context/AuthContext";
 import { signOut } from "../firebase/firebase";
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
 
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -41,15 +43,28 @@ export default function Navbar() {
               <Avatar alt="clrswy" src="https://lms.clarusway.com/pluginfile.php/1/core_admin/logocompact/300x300/1628491244/clarusway_LOGO_tek_png.png" />
             </Link>
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} textAlign="center">
-            <a
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, underline: "none" }} textAlign="center">
+            <Stack direction="row" spacing={1} justifyContent="center">
+              <Chip
+                label="-----<Serhat/> Blog -----"
+                href="https://github.com/serhatkoyuncu"
+                variant="outlined"
+                component="a"
+                clickable
+                target="_blank"
+                size="medium"
+                sx={{ borderColor: 'primary.main',color: 'white', fontSize:25,"&:hover":{opacity: 1}}}
+              />
+            </Stack>
+            {/* <a
               href="https://github.com/serhatkoyuncu"
               color="white"
               underline="none"
               target="_blank"
               rel="noopener noreferrer"
+              sx={{ underline: "none" }}
             >
-              -----<code>{"<Serhat/>"}</code> <span> Blog -----</span></a>
+              -----<code>{"<Serhat/>"}</code> <span> Blog -----</span></a> */}
           </Typography>
 
           <IconButton
@@ -80,7 +95,7 @@ export default function Navbar() {
             {currentUser ? (
               <>
                 <MenuItem onClick={handleClose}>
-                  <Link to="">Profile</Link>
+                  <Link to="/profile">Profile</Link>
                 </MenuItem>
                 <MenuItem onClick={handleClose}><Link to="/new-blog">New</Link></MenuItem>
                 <MenuItem onClick={handleClose}><Link to="" onClick={() => signOut()} >Logout</Link></MenuItem>

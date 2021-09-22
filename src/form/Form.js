@@ -11,7 +11,6 @@ function FormComponent({ info, setInfo, handleFormSubmit }) {
     // const value = e.target.value
     const { name, value } = e.target
     setInfo({ ...info, [name]: value })
-    console.log("object")
   }
   return (
     <Box
@@ -38,11 +37,10 @@ function FormComponent({ info, setInfo, handleFormSubmit }) {
         <Typography variant="h5" mt={3} mb={2} >
           -----NEW BLOG-----
         </Typography>
-        <form>
         <div>
           <TextField
-            // value={info.title}
-            // onChange={handleInputChange}
+            value={info.title}
+            onChange={handleInputChange}
             id="outlined-helperText"
             label="Title"
             required
@@ -50,8 +48,8 @@ function FormComponent({ info, setInfo, handleFormSubmit }) {
         </div>
         <div>
           <TextField
-          //  value={info.image}
-          //  onChange={handleInputChange}
+            value={info.image}
+            onChange={handleInputChange}
             id="outlined-helperText"
             label="Image URL"
             required
@@ -59,8 +57,8 @@ function FormComponent({ info, setInfo, handleFormSubmit }) {
         </div>
         <div>
           <TextField
-          //  value={info.content}
-          //  onChange={handleInputChange}
+            value={info.content}
+            onChange={handleInputChange}
             id="outlined-helperText"
             label="Content"
             required
@@ -78,7 +76,6 @@ function FormComponent({ info, setInfo, handleFormSubmit }) {
             SUBMIT
           </Button>
         </div>
-        </form>
       </div>
     </Box>
   )

@@ -10,7 +10,7 @@ export const addInfo = (info) => {
 }
 
 export const useFetch = () => {
-    const [contactList, setContactList] = useState([])
+    const [cardList, setCardList] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     
     useEffect(() => {
@@ -18,15 +18,15 @@ export const useFetch = () => {
         const cardRef = firebase.database().ref("card")
         cardRef.on("value", (snapshot)=>{
             const cards = snapshot.val();
-            const contactArray = [];
+            const cardArray = [];
             for (let id in cards) {
-                contactArray.push({id,...cards[id]})
+                cardArray.push({id,...cards[id]})
             }
-            setContactList(contactArray)
+            setCardList(cardArray)
             setIsLoading(false)
         })
     }, [])
-    return {contactList,isLoading}
+    return {cardList,isLoading}
 }
 
 export const deleteHandler = (id) => {
