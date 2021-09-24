@@ -37,45 +37,51 @@ function FormComponent({ info, setInfo, handleFormSubmit }) {
         <Typography variant="h5" mt={3} mb={2} >
           -----NEW BLOG-----
         </Typography>
-        <div>
-          <TextField
-            value={info.title}
-            onChange={handleInputChange}
-            id="outlined-helperText"
-            label="Title"
-            required
-          />
-        </div>
-        <div>
-          <TextField
-            value={info.image}
-            onChange={handleInputChange}
-            id="outlined-helperText"
-            label="Image URL"
-            required
-          />
-        </div>
-        <div>
-          <TextField
-            value={info.content}
-            onChange={handleInputChange}
-            id="outlined-helperText"
-            label="Content"
-            required
-            multiline
-            rows={12}
-          />
-        </div>
-        <div>
-          <Button
-            sx={{ width: '75ch', m: 2 }}
-            type="submit"
-            variant="contained"
-            color="primary"
-          >
-            SUBMIT
-          </Button>
-        </div>
+        <form onSubmit={handleFormSubmit}>
+          <div>
+            <TextField
+              value={info.title}
+              name="title"
+              onChange={handleInputChange}
+              id="outlined-helperText"
+              label="Title"
+              required
+            />
+          </div>
+          <div>
+            <TextField
+              value={info.image}
+              onChange={handleInputChange}
+              name="image"
+              id="outlined-helperText"
+              label="Image URL"
+              required
+            />
+          </div>
+          <div>
+            <TextField
+              value={info.content}
+              onChange={handleInputChange}
+              name="content"
+              id="outlined-helperText"
+              label="Content"
+              required
+              multiline
+              rows={12}
+            />
+          </div>
+          <div>
+            <Button
+              sx={{ width: '75ch', m: 2 }}
+              type="button"
+              variant="contained"
+              color="primary"
+              onClick={handleFormSubmit}
+            >
+              SUBMIT
+            </Button>
+          </div>
+        </form>
       </div>
     </Box>
   )

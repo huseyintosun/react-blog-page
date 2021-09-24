@@ -3,10 +3,10 @@ import { userObserver } from "../firebase/firebase";
 export const AuthContext = createContext();
 function AuthContextProvider(props) {
   const [currentUser, setCurrentUser] = useState();
-  console.log(
-    ":rocket: currentUser",
-    currentUser
-  );
+  // console.log(
+  //   ":rocket: currentUser",
+  //   currentUser
+  // );
   useEffect(() => {
     userObserver(setCurrentUser);
   }, []);

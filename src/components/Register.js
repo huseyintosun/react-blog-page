@@ -3,7 +3,6 @@ import {
   Button,
   TextField,
   Grid,
-  Container,
   Avatar,
   Typography,
   Paper,
@@ -11,11 +10,9 @@ import {
 } from '@mui/material';
 
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import GoogleButton from './GoogleButton';
 import React, { useState } from "react";
-import { createUser, signUpProvider } from '../firebase/firebase';
+import { createUser} from '../firebase/firebase';
 import { useHistory } from "react-router-dom";
-import Signup from '../pages/Signup';
 
 const stylesFunc = makeStyles((theme) => ({
   wrapper: {

@@ -18,14 +18,14 @@ function AppRouter() {
   const handleFormSubmit = (e) => {
       e.preventDefault();
     addInfo(info);
+    console.log(info)
     // if(info?.id){
     //   editHandler(info)
     // } else {
     //   addInfo(info);
     // }
     setInfo(initialState)
-    console.log("deneme");
-  }
+}
   const updateFormHandler = (item) => {
     setInfo({...item})
   }
@@ -44,7 +44,7 @@ function AppRouter() {
                 <Route exact path="/register" >
                     <Register />
                 </Route>
-                <Route path="/detail" >
+                <Route path="/detail">
                     <Details />
                 </Route>
                 <Route path="/profile" >
