@@ -3,13 +3,13 @@ import {
   Button,
   TextField,
   Grid,
-  Container,
   Avatar,
   Typography,
+  Paper,
 
 } from '@mui/material';
 
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { signIn, signUpProvider } from "../firebase/firebase";
@@ -56,64 +56,59 @@ function Login() {
   };
 
   return (
-    <Container className={signupStyles.wrapper}>
-      <Avatar className={signupStyles.avatar}>
-        <LockOutlinedIcon />
-      </Avatar>
-      <Typography className={signupStyles.signUp} variant="h4">
-        Login
-      </Typography>
-
-      <form id="login">
-        <Grid container spacing={3}>
-
-          <Grid item xs={12}>
-            <TextField
-              name="email"
-              label="Email"
-              variant="outlined"
-              fullWidth
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              name="password"
-              label="Password"
-              variant="outlined"
-              type="password"
-              fullWidth
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              fullWidth
-              onClick={handleSubmit}
-            >
-              Login
-            </Button>
-          </Grid>
-          <Grid item xs={12}>
-          <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              fullWidth
-              onClick={handleProviderLogin}
-            >
-              with Google
-            </Button>
-          </Grid>
+    <Grid>
+      <Paper elevation={20} sx={{ padding: "30px 20px", width: 300, margin: "20px auto" }}>
+        <Grid align="center">
+          <Avatar className={signupStyles.avatar} sx={{ backgroundColor: "#1bbd7e" }}>
+            <AddCircleIcon />
+          </Avatar>
+          <Typography className={signupStyles.signUp} variant="h4">
+            Login
+          </Typography>
         </Grid>
-      </form>
 
-    </Container>
+        <form id="login" onSubmit={handleSubmit}>
+          <TextField
+            sx={{ mb: 2 }}
+            name="email"
+            label="Email"
+            variant="outlined"
+            fullWidth
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <TextField
+            sx={{ mb: 2 }}
+            name="password"
+            label="Password"
+            variant="outlined"
+            type="password"
+            fullWidth
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <Button
+            sx={{ mb: 2 }}
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+          >
+            Login
+          </Button>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+            onClick={handleProviderLogin}
+          >
+            with Google
+          </Button>
+        </form>
+      </Paper>
+    </Grid>
+
   );
 }
 

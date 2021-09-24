@@ -30,7 +30,7 @@ const devConfig = {
 };
 const prodConfig = {};
 const firebaseConfig = process.env.NODE_ENV === "development" ? devConfig : prodConfig;
-firebase.initializeApp(firebaseConfig); 
+firebase.initializeApp(firebaseConfig);
 export default firebase;
 
 export const createUser = async (email, password, displayName) => {
@@ -51,9 +51,13 @@ export const createUser = async (email, password, displayName) => {
     const currentUser = firebase.auth().currentUser;
     await currentUser.updateProfile({ displayName });
   } catch (error) {
-    alert(
-      "There exists an account with this email. Please login with your password or continue with Google!"
-    );
+    if (password.length < 6) {
+      alert("Please enter password minimum 6 letter")
+    } else {
+      alert(
+        "There exists an account with this email. Please login with your password or continue with Google!"
+      );
+    }
   }
 };
 export const signIn = (email, password) => {

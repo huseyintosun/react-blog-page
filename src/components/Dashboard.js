@@ -17,7 +17,7 @@ export default function RecipeReviewCard() {
         <>
             <Typography noWrap align="center" variant="h3" component="h2">
                 --------------DASHBOARD--------------
-            </Typography>;
+            </Typography>
 
             <Card sx={{ maxWidth: 345 }} >
                 <Link to="/detail">
