@@ -14,6 +14,7 @@ import { Grid, Box } from '@mui/material';
 
 
 
+
 export default function RecipeReviewCard() {
     const { cardList, isLoading } = useFetch();
 
@@ -33,18 +34,19 @@ export default function RecipeReviewCard() {
                     </Typography>
                 ) : (
                     <Box sx={{ flexGrow: 1 }}>
-                        <Grid container spacing={2} sx={{width:"100%",m:5}}>
+                        <Grid container spacing={2} sx={{ width: "100%", m: 5 }}>
                             {cardList?.map((item) => (
                                 <Grid item xs={3}>
                                     <Card sx={{ maxWidth: 400 }} key={item?.id}>
-                                        <Link to="/detail">
+                                        <Link to="/detail"
+                                        >
                                             <CardMedia
                                                 component="img"
                                                 height="194"
                                                 src={item.image}
                                                 alt={item.title}
                                             />
-                                            <CardContent sx={{height:200}}>
+                                            <CardContent sx={{ height: 200 }}>
                                                 <Typography gutterBottom variant="h4" component="div">
                                                     {item.title}
                                                 </Typography>
@@ -64,7 +66,7 @@ export default function RecipeReviewCard() {
                                         </CardActions>
                                     </Card>
                                 </Grid>
-                                ))}
+                            ))}
                         </Grid>
                     </Box>
                 )

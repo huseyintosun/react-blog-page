@@ -3,9 +3,11 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Avatar, Button, Stack, Typography } from '@mui/material';
 import { blue } from '@mui/material/colors';
+import {useHistory} from 'react-router-dom';
 
 
 function FormComponent({ info, setInfo, handleFormSubmit }) {
+  const history = useHistory()
   const handleInputChange = (e) => {
     // const name= e.target.name
     // const value = e.target.value
@@ -37,7 +39,7 @@ function FormComponent({ info, setInfo, handleFormSubmit }) {
         <Typography variant="h5" mt={3} mb={2} >
           -----NEW BLOG-----
         </Typography>
-        <form onSubmit={handleFormSubmit}>
+        <form>
           <div>
             <TextField
               value={info.title}
@@ -76,9 +78,12 @@ function FormComponent({ info, setInfo, handleFormSubmit }) {
               type="button"
               variant="contained"
               color="primary"
-              onClick={handleFormSubmit}
+              onClick={()=> {
+                history.push("/")
+                handleFormSubmit()
+              }}
             >
-              SUBMIT
+              {info?.id? "UPDATE" : "SUBMIT"}
             </Button>
           </div>
         </form>

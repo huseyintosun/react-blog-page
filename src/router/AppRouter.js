@@ -9,6 +9,7 @@ import Profile from '../components/Profil';
 import FormComponent from '../form/Form'
 import {addInfo, editHandler} from '../function/function'
 import { ToastContainer } from 'react-toastify';
+import { useHistory } from "react-router-dom";
 
 const initialState = {title: "", image: "", content: ""}
 
@@ -16,26 +17,27 @@ function AppRouter() {
     const [info, setInfo] = useState(initialState)
 
   const handleFormSubmit = (e) => {
-      e.preventDefault();
-    addInfo(info);
+    //   e.preventDefault();
+    // addInfo(info);
     console.log(info)
-    // if(info?.id){
-    //   editHandler(info)
-    // } else {
-    //   addInfo(info);
-    // }
+    if(info?.id){
+      editHandler(info)
+    } else {
+      addInfo(info);
+    }
     setInfo(initialState)
 }
+const history = useHistory();
   const updateFormHandler = (item) => {
     setInfo({...item})
+    // history.push("/detail")
   }
     return (
         <Router>
             <Navbar />
             <Switch>
                 <Route exact path="/">
-                    <Dashboard 
-                    updateFormHandler={updateFormHandler} 
+                    <Dashboard  
                     />
                 </Route>
                 <Route exact path="/login">
@@ -45,7 +47,9 @@ function AppRouter() {
                     <Register />
                 </Route>
                 <Route path="/detail">
-                    <Details />
+                    <Details 
+                    updateFormHandler={updateFormHandler}
+                    />
                 </Route>
                 <Route path="/profile" >
                     <Profile />

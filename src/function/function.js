@@ -32,6 +32,7 @@ export const useFetch = () => {
 export const deleteHandler = (id) => {
     const cardRef = firebase.database().ref("card").child(id);
     cardRef.remove();
+    console.log("removed")
     successToastify("Deleted Succesfully")
 }
 

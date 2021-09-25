@@ -9,13 +9,18 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import { useFetch } from '../function/function';
 import { useLocation, useParams } from 'react-router';
+import { useHistory} from 'react-router-dom';
+import DeleteIcon from '@mui/icons-material/Delete';
+import UpdateIcon from '@mui/icons-material/Update';
+import { Chip, Stack } from '@mui/material';
+import {deleteHandler} from '../function/function'
 
 
-export default function RecipeReviewCard() {
+export default function RecipeReviewCard({updateFormHandler}) {
+    const history = useHistory()
     const { cardList } = useFetch();
     const { id } = useParams()
     const item = new URLSearchParams(useLocation().search);
-    console.log(useLocation())
     return (
         <>
             <Typography noWrap align="center" variant="h3" component="h2">
@@ -55,6 +60,25 @@ export default function RecipeReviewCard() {
                                 <ChatBubbleOutlineIcon />
                             </IconButton>
                         </CardActions>
+                        <Stack direction="row" spacing={5} justifyContent="center">
+                            <Chip 
+                            sx={{ width:"30%" }}
+                            label="Update" 
+                            color="primary" 
+                            icon={<UpdateIcon />}
+                            onClick={()=>{
+                                history.push("/new-blog")
+                                updateFormHandler(item)}
+                            } 
+                            />
+                            <Chip 
+                            sx={{ width:"30%" }}
+                            label="Delete" 
+                            color="error" 
+                            icon={<DeleteIcon />}
+                            onClick={()=> deleteHandler(item.id)}
+                            />
+                        </Stack>
                     </Card>
                 ))
             }
