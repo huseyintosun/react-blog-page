@@ -70,6 +70,8 @@ export default function Details({ updateFormHandler }) {
                         <ChatBubbleOutlineIcon />
                     </IconButton>
                 </CardActions>
+                {
+                    currentUser?.email === arrById?.email ? 
                 <Stack direction="row" spacing={5} justifyContent="center">
                     <Chip
                         sx={{ width: "30%" }}
@@ -92,7 +94,8 @@ export default function Details({ updateFormHandler }) {
                             history.push("/")
                         }}
                     />
-                </Stack>
+                </Stack> : null
+                }
             </Card>
             {/* <Card
                 height="100%"
