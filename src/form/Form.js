@@ -4,15 +4,17 @@ import TextField from '@mui/material/TextField';
 import { Avatar, Button, Stack, Typography } from '@mui/material';
 import { blue } from '@mui/material/colors';
 import {useHistory} from 'react-router-dom';
+import { AuthContext } from "../context/AuthContext";
 
 
 function FormComponent({ info, setInfo, handleFormSubmit }) {
+  const { currentUser } = React.useContext(AuthContext);
   const history = useHistory()
   const handleInputChange = (e) => {
     // const name= e.target.name
     // const value = e.target.value
     const { name, value } = e.target
-    setInfo({ ...info, [name]: value })
+    setInfo({ ...info, ["email"]: currentUser?.email, [name]: value })
   }
   return (
     <Box

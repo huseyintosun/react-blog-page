@@ -40,12 +40,12 @@ export const createUser = async (email, password, displayName) => {
       .createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
         // Signed in
-        var user = userCredential.user;
+        // var user = userCredential.user;
         // ...
       })
       .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        // var errorCode = error.code;
+        // var errorMessage = error.message;
         // ..
       });
     const currentUser = firebase.auth().currentUser;
@@ -66,12 +66,12 @@ export const signIn = (email, password) => {
     .signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       // Signed in
-      var user = userCredential.user;
+      // var user = userCredential.user;
       // ...
     })
     .catch((error) => {
-      var errorCode = error.code;
-      var errorMessage = error.message;
+      // var errorCode = error.code;
+      // var errorMessage = error.message;
       alert("The password is invalid or the user does not have a password!");
     });
 };

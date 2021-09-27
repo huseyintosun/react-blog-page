@@ -39,7 +39,7 @@ export default function Navbar() {
             aria-label="menu"
             sx={{ mr: 2 }}
           >
-            <Link to="/">
+            <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
               <Avatar alt="clrswy" src="https://lms.clarusway.com/pluginfile.php/1/core_admin/logocompact/300x300/1628491244/clarusway_LOGO_tek_png.png" />
             </Link>
           </IconButton>
@@ -95,17 +95,17 @@ export default function Navbar() {
             {currentUser ? (
               <>
                 <MenuItem onClick={handleClose}>
-                  <Link to="/profile">Profile</Link>
+                  <Link to="/profile" style={{ textDecoration: 'none', color: 'inherit' }}>Profile</Link>
                 </MenuItem>
-                <MenuItem onClick={handleClose}><Link to="/new-blog">New</Link></MenuItem>
-                <MenuItem onClick={handleClose}><Link to="" onClick={() => signOut()} >Logout</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link to="/new-blog" style={{ textDecoration: 'none', color: 'inherit' }}>New</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link to="" onClick={() => signOut()} style={{ textDecoration: 'none', color: 'inherit' }}>Logout</Link></MenuItem>
               </>
             ) : (
               <>
                 <MenuItem onClick={handleClose}>
-                  <Link to="/login" underline="none" onClick={() => history.push("/login")}>Login</Link>
+                  <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }} onClick={() => history.push("/login")}>Login</Link>
                 </MenuItem>
-                <MenuItem onClick={handleClose}><Link to="/register" onClick={() => history.push("/register")} underline="none" >Register</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link to="/register" onClick={() => history.push("/register")} style={{ textDecoration: 'none', color: 'inherit' }} >Register</Link></MenuItem>
               </>
             )}
           </Menu>

@@ -9,14 +9,20 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import { Link } from 'react-router-dom';
 import { useFetch } from '../function/function';
-import { Grid, Box } from '@mui/material';
+import { Grid, Box, Button } from '@mui/material';
+import { AuthContext } from "../context/AuthContext";
+import EmailIcon from '@mui/icons-material/Email';
+import { failToastify } from '../utils/customToastify'
 
 
 
 
 
-export default function RecipeReviewCard() {
+export default function Dashboard() {
+    const { currentUser } = React.useContext(AuthContext);
     const { cardList, isLoading } = useFetch();
+    console.log(`cardList`, cardList)
+
 
     return (
         <div className="App">
@@ -38,29 +44,38 @@ export default function RecipeReviewCard() {
                             {cardList?.map((item) => (
                                 <Grid item xs={3}>
                                     <Card sx={{ maxWidth: 400 }} key={item?.id}>
-                                        <Link to="/detail"
+                                        <Link 
+                                        to={currentUser ? `detail/${item?.id}` : "/login"}
+                                        style={{ textDecoration: 'none', color: 'inherit' }}
+                                        onClick={()=> currentUser ? null : failToastify("please login")}
                                         >
                                             <CardMedia
                                                 component="img"
                                                 height="194"
-                                                src={item.image}
-                                                alt={item.title}
+                                                src={item?.image}
+                                                alt={item?.title}
                                             />
                                             <CardContent sx={{ height: 200 }}>
                                                 <Typography gutterBottom variant="h4" component="div">
-                                                    {item.title}
+                                                    {item?.title}
                                                 </Typography>
-                                                {"today"}
-                                                <Typography variant="body2" color="text.secondary">
-                                                    {item.content}
+                                                {new Date().toLocaleDateString()}
+                                                <Typography variant="body1">
+                                                    {item?.content}
                                                 </Typography>
                                             </CardContent>
                                         </Link>
+                                        <CardActions height="%100" disableSpacing>
+                                            <IconButton size="small">
+                                                <EmailIcon />
+                                                {item?.email}
+                                            </IconButton>
+                                        </CardActions>
                                         <CardActions disableSpacing>
                                             <IconButton aria-label="add to favorites">
                                                 <FavoriteIcon />
                                             </IconButton>
-                                            <IconButton aria-label="share">
+                                            <IconButton aria-label="comment">
                                                 <ChatBubbleOutlineIcon />
                                             </IconButton>
                                         </CardActions>
@@ -74,3 +89,14 @@ export default function RecipeReviewCard() {
         </div>
     );
 }
+    // return (
+    //     <div className="App">
+    //         <Typography noWrap align="center" variant="h4" component="h2" sx={{ m: 5, color: "black", backgroundColor: "blueviolet", borderRadius: 5 }}>PLEASE LOGIN OR REGISTER</Typography>
+    //         <Button sx={{ m: 3, color: "black", backgroundColor: "blueviolet", borderRadius: 5, ":hover": { backgroundColor: "yellow" } }}>
+    //             <Link to="/register">REGISTER</Link>
+    //         </Button>
+    //         <Button sx={{ m: 3, color: "black", backgroundColor: "blueviolet", borderRadius: 5, ":hover": { backgroundColor: "yellow" } }}>
+    //             <Link to="/login">LOGIN</Link>
+    //         </Button>
+    //     </div>
+    // )

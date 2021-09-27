@@ -1,6 +1,7 @@
 import firebase from '../firebase/firebase';
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import {successToastify} from '../utils/customToastify'
+import {useHistory} from 'react-router-dom';
 
 
 
@@ -29,10 +30,9 @@ export const useFetch = () => {
     return {cardList,isLoading}
 }
 
-export const deleteHandler = (id) => {
+export const deleteHandler = (id) => {   
     const cardRef = firebase.database().ref("card").child(id);
     cardRef.remove();
-    console.log("removed")
     successToastify("Deleted Succesfully")
 }
 

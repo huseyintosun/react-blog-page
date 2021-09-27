@@ -11,7 +11,7 @@ import {
 
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { signIn, signUpProvider } from "../firebase/firebase";
 
 const stylesFunc = makeStyles((theme) => ({
@@ -95,6 +95,15 @@ function Login() {
             fullWidth
           >
             Login
+          </Button>
+          <Button
+            sx={{ mb: 2 }}
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+          >
+            <Link to={"/register"} style={{ textDecoration: 'none', color: 'white' }}>or Register</Link>
           </Button>
           <Button
             type="submit"

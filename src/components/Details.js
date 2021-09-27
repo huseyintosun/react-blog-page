@@ -8,80 +8,92 @@ import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import { useFetch } from '../function/function';
-import { useLocation, useParams } from 'react-router';
-import { useHistory} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 import UpdateIcon from '@mui/icons-material/Update';
 import { Chip, Stack } from '@mui/material';
-import {deleteHandler} from '../function/function'
+import { deleteHandler } from '../function/function'
+import { AuthContext } from "../context/AuthContext";
+import EmailIcon from '@mui/icons-material/Email';
 
 
-export default function RecipeReviewCard({updateFormHandler}) {
+export default function Details({ updateFormHandler }) {
+    const { currentUser } = React.useContext(AuthContext);
     const history = useHistory()
     const { cardList } = useFetch();
     const { id } = useParams()
-    const item = new URLSearchParams(useLocation().search);
+
+    function filterById(item) {
+        if (item?.id === id) {
+            return true;
+        }
+    }
+    const arrById = cardList?.filter(filterById)[0];
+    // console.log('Filtered Array\n', arrById)
+    // Filtered Array
     return (
         <>
             <Typography noWrap align="center" variant="h3" component="h2">
                 --------------DETAİL--------------
             </Typography>
-            <Typography noWrap align="center" variant="h3" component="h2">
-            </Typography>
-            {id}
-            {/* {cardList[0].id} */}
-            {
-                cardList.map((item) => (
-                    <Card
-                        height="100%"
-                        sx={{ maxWidth: "80%", textAlign: "center", justifyContent: "center", ml: "10%" }}>
-                        {item.id}
-                        <CardMedia
-                            component="img"
-                            height="%50"
-                            src={item.image}
-                            alt={item.title}
-                        />
-                        <Typography gutterBottom variant="h4" component="div">
-                            {item.title}
-                        </Typography>
-                        <CardContent
-                            height="%100">
-                            {"today"}
-                            <Typography variant="body2" color="text.secondary">
-                                {item.content}
-                            </Typography>
-                        </CardContent>
-                        <CardActions height="%100" disableSpacing>
-                            <IconButton aria-label="add to favorites">
-                                <FavoriteIcon />
-                            </IconButton>
-                            <IconButton aria-label="comment">
-                                <ChatBubbleOutlineIcon />
-                            </IconButton>
-                        </CardActions>
-                        <Stack direction="row" spacing={5} justifyContent="center">
-                            <Chip 
-                            sx={{ width:"30%" }}
-                            label="Update" 
-                            color="primary" 
-                            icon={<UpdateIcon />}
-                            onClick={()=>{
-                                history.push("/new-blog")
-                                updateFormHandler(item)}
-                            } 
-                            />
-                            <Chip 
-                            sx={{ width:"30%" }}
-                            label="Delete" 
-                            color="error" 
-                            icon={<DeleteIcon />}
-                            onClick={()=> deleteHandler(item.id)}
-                            />
-                        </Stack>
-                    </Card>
-                ))
-            }
+            <Card
+                height="100%"
+                sx={{ maxWidth: "80%", textAlign: "center", justifyContent: "center", m: "10%",mt:0 }}>
+                <CardMedia
+                    component="img"
+                    height="%50"
+                    src={arrById?.image}
+                    alt={arrById?.title}
+                />
+                <Typography gutterBottom variant="h4" component="div">
+                    {arrById?.title}
+                </Typography>
+                <CardContent
+                    height="%100">
+                    {new Date().toLocaleDateString()}
+                    <Typography variant="body1">
+                        {arrById?.content}
+                    </Typography>
+                </CardContent>
+                <CardActions height="%100" disableSpacing>
+                    <IconButton size="small">
+                        <EmailIcon />
+                        {arrById?.email}
+                    </IconButton>
+                </CardActions>
+                <CardActions height="%100" disableSpacing>
+                    <IconButton aria-label="add to favorites">
+                        <FavoriteIcon />
+                    </IconButton>
+                    <IconButton aria-label="comment">
+                        <ChatBubbleOutlineIcon />
+                    </IconButton>
+                </CardActions>
+                <Stack direction="row" spacing={5} justifyContent="center">
+                    <Chip
+                        sx={{ width: "30%" }}
+                        label="Update"
+                        color="primary"
+                        icon={<UpdateIcon />}
+                        onClick={() => {
+                            history.push("/new-blog")
+                            updateFormHandler(arrById)
+                        }
+                        }
+                    />
+                    <Chip
+                        sx={{ width: "30%" }}
+                        label="Delete"
+                        color="error"
+                        icon={<DeleteIcon />}
+                        onClick={() => {
+                            deleteHandler(arrById?.id)
+                            history.push("/")
+                        }}
+                    />
+                </Stack>
+            </Card>
             {/* <Card
                 height="100%"
                 sx={{ maxWidth: "100%" }}>
