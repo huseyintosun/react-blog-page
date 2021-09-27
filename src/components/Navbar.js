@@ -47,7 +47,7 @@ export default function Navbar() {
             <Stack direction="row" spacing={1} justifyContent="center">
               <Chip
                 label="-----<Serhat/> Blog -----"
-                href="https://github.com/serhatkoyuncu"
+                href="https://github.com/serhatkoyuncu/react-blog-page"
                 variant="outlined"
                 component="a"
                 clickable
