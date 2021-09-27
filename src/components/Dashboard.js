@@ -47,7 +47,7 @@ export default function Dashboard() {
                                         <Link 
                                         to={currentUser ? `detail/${item?.id}` : "/login"}
                                         style={{ textDecoration: 'none', color: 'inherit' }}
-                                        onClick={()=> currentUser ? null : failToastify("please login")}
+                                        onClick={()=> currentUser ? null : failToastify("Please Login!")}
                                         >
                                             <CardMedia
                                                 component="img"
