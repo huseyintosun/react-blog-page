@@ -41,9 +41,9 @@ export default function Dashboard() {
                     </Typography>
                 ) : (
                     <Box sx={{ flexGrow: 1 }}>
-                        <Grid container spacing={2} sx={{ width: "100%", m: 5 }}>
+                        <Grid container spacing={2} sx={{ width: "100%", m: 3 }}>
                             {cardList?.map((item) => (
-                                <Grid item xs={3}>
+                                <Grid item xs={4}>
                                     <Card sx={{ maxWidth: 400 }} key={item?.id}>
                                         <Link 
                                         to={currentUser ? `detail/${item?.id}` : "/login"}

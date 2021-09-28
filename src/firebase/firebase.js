@@ -6,6 +6,8 @@ import "firebase/firestore";
 import "firebase/database";
 import {successToastify,failToastify} from '../utils/customToastify'
 
+
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -53,9 +55,9 @@ export const createUser = async (email, password, displayName) => {
 };
 export const signIn = (email, password) => {
   firebase
-    .auth()
-    .signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
+  .auth()
+  .signInWithEmailAndPassword(email, password)
+  .then((userCredential) => {
       // Signed in
       // var user = userCredential.user;
       // ...
@@ -69,6 +71,7 @@ export const signIn = (email, password) => {
 };
 export const signOut = () => {
   firebase.auth().signOut();
+  successToastify("Sign out successfully")
 };
 export const userObserver = async (setCurrentUser) => {
   firebase.auth().onAuthStateChanged((user) => {
@@ -81,7 +84,7 @@ export const userObserver = async (setCurrentUser) => {
   });
 };
 export const signUpProvider = () => {
-  var provider = new firebase.auth.GoogleAuthProvider();
+  const provider = new firebase.auth.GoogleAuthProvider();
   provider.setCustomParameters({ prompt: "select_account" });
   firebase.auth().signInWithPopup(provider);
 };
