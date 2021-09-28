@@ -1,7 +1,6 @@
 import firebase from '../firebase/firebase';
 import { useState, useEffect } from 'react'
 import {successToastify} from '../utils/customToastify'
-import {useHistory} from 'react-router-dom';
 
 
 

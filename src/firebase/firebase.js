@@ -4,6 +4,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import "firebase/database";
+import {successToastify,failToastify} from '../utils/customToastify'
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -42,9 +43,9 @@ export const createUser = async (email, password, displayName) => {
     await currentUser.updateProfile({ displayName });
   } catch (error) {
     if (password.length < 6) {
-      alert("Please enter password minimum 6 letter")
+      failToastify("Please enter password minimum 6 letter")
     } else {
-      alert(
+      failToastify(
         "There exists an account with this email. Please login with your password or continue with Google!"
       );
     }
@@ -58,11 +59,12 @@ export const signIn = (email, password) => {
       // Signed in
       // var user = userCredential.user;
       // ...
+      successToastify("Logged in successfully")
     })
     .catch((error) => {
       // var errorCode = error.code;
       // var errorMessage = error.message;
-      alert("The password is invalid or the user does not have a password!");
+      failToastify("The password is invalid or the user does not have a password!");
     });
 };
 export const signOut = () => {
