@@ -9,7 +9,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import { Link } from 'react-router-dom';
 import { useFetch } from '../function/function';
-import { Grid, Box, Button } from '@mui/material';
+import { Grid, Box } from '@mui/material';
 import { AuthContext } from "../context/AuthContext";
 import EmailIcon from '@mui/icons-material/Email';
 import { failToastify } from '../utils/customToastify'
@@ -22,6 +22,7 @@ export default function Dashboard() {
     const { currentUser } = React.useContext(AuthContext);
     const { cardList, isLoading } = useFetch();
     console.log(`cardList`, cardList)
+    const [liked, setLiked] = React.useState(null)
 
 
     return (
@@ -73,7 +74,10 @@ export default function Dashboard() {
                                         </CardActions>
                                         <CardActions disableSpacing>
                                             <IconButton aria-label="add to favorites">
-                                                <FavoriteIcon />
+                                                <FavoriteIcon
+                                                onClick={()=>setLiked(!liked)}
+                                                sx={ liked ? {color:"red"} : {color:"inherit"} }
+                                                 />
                                             </IconButton>
                                             <IconButton aria-label="comment">
                                                 <ChatBubbleOutlineIcon />
