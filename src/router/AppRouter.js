@@ -37,8 +37,7 @@ function AppRouter() {
       <Navbar />
       <Switch>
         <Route exact path="/">
-          <Dashboard
-          />
+          <Dashboard/>
         </Route>
         <Route exact path="/login">
           <Login />
